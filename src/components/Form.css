@@ -8,7 +8,7 @@ body, h1, h2, h3, h4, h5, h6, p {
   /* Container styling */
   .form-container {
     width: 60%;
-    margin: 2rem auto;
+    margin: 6rem auto;
     padding: 2rem;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
@@ -31,6 +31,7 @@ body, h1, h2, h3, h4, h5, h6, p {
   .question-block {
     margin-bottom: 1rem;
     padding: 1rem;
+    padding-top: 2rem;
     border-radius: 8px;
     background-color:  #25272d;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -51,13 +52,13 @@ body, h1, h2, h3, h4, h5, h6, p {
     display: flex;
     flex-direction: column;
     max-width: 570px;
-    margin-left: 3rem;
+    margin-left: 8.5rem;
   }
   
   /* Option label styling */
   .option {
-    margin-bottom: 0.75rem; /* Increase margin */
-    padding: 0.5rem 1rem; /* Add padding */
+    margin-bottom: 1rem; /* Increase margin */
+    padding: 0.8rem 1rem; /* Add padding */
     font-size: 1rem;
     color: white;
     display: flex;
@@ -70,7 +71,7 @@ body, h1, h2, h3, h4, h5, h6, p {
   
   /* Input and label alignment */
   .option input {
-    margin-right: 0.5rem;
+    margin-right: 0.8rem;
     transform: scale(1);;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -101,6 +102,17 @@ body, h1, h2, h3, h4, h5, h6, p {
     border-color: #dc2618;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
   }
+
+
+
+.text-input {
+  width: 90%; /* Adjust width as needed */
+  padding: 0.5rem; /* Add padding */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add border-radius */
+  font-size: 1rem; /* Adjust font size */
+  margin-top: 0.5rem; /* Add margin top */
+}
   
   /* Navigation buttons container */
   .navigation-buttons {
@@ -119,6 +131,7 @@ body, h1, h2, h3, h4, h5, h6, p {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    width: 20%;
   }
   
   .nav-button:disabled {
@@ -135,7 +148,7 @@ body, h1, h2, h3, h4, h5, h6, p {
   /* Submit button styling */
   .submit-button {
     display: block;
-    width: 40%;
+    width: 30%;
     padding: 0.75rem;
     border: none;
     border-radius: 25px;

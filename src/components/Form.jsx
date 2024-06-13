@@ -3,15 +3,17 @@ import './Form.css';
 
 const Form = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState(Array(5).fill([])); // Array to store arrays of selected answers
+  const [answers, setAnswers] = useState(Array(7).fill('')); // Array to store answers
   const questions = [
     {
       question: "What is your favorite programming language?",
-      options: ["JavaScript", "Python", "Java", "C++"]
+      options: ["JavaScript", "Python", "Java", "C++"],
+      singleSelect: true 
     },
     {
       question: "What is your preferred framework or library?",
-      options: ["React", "Angular", "Vue.js", "jQuery"]
+      options: ["React", "Angular", "Vue.js", "jQuery"],
+      singleSelect: true 
     },
     {
       question: "Which backend technology do you prefer?",
@@ -24,11 +26,23 @@ const Form = () => {
     {
       question: "What is your preferred text editor or IDE?",
       options: ["Visual Studio Code", "Sublime Text", "IntelliJ IDEA", "Atom"]
+    },
+    {
+      question: "What is your favorite programming language?",
+      type: "string" 
+    },
+    {
+      question: "Any additional comments?",
+      type: "string" // Indicates text input question
     }
   ];
 
   const nextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
+      if (!validateAnswer()) {
+        alert('Please provide an answer before proceeding.');
+        return;
+      }
       setCurrentQuestion(currentQuestion + 1);
     }
   };
@@ -40,24 +54,39 @@ const Form = () => {
   };
 
   const handleAnswerChange = (event) => {
-    const { name, value } = event.target;
-    const questionIndex = parseInt(name.replace('question', ''), 10);
+    const { value, type, checked } = event.target;
     const newAnswers = [...answers];
-    const selectedOptions = newAnswers[questionIndex];
-
-    if (selectedOptions.includes(value)) {
-      // Remove if already selected
-      newAnswers[questionIndex] = selectedOptions.filter(option => option !== value);
+    
+    if (type === 'checkbox') {
+      const selectedOptions = newAnswers[currentQuestion] || [];
+      
+      if (checked) {
+        newAnswers[currentQuestion] = [...selectedOptions, value];
+      } else {
+        newAnswers[currentQuestion] = selectedOptions.filter(option => option !== value);
+      }
     } else {
-      // Add to selected options
-      newAnswers[questionIndex] = [...selectedOptions, value];
+      newAnswers[currentQuestion] = value;
     }
 
     setAnswers(newAnswers);
   };
 
+  const validateAnswer = () => {
+    const answer = answers[currentQuestion];
+    if (Array.isArray(answer)) {
+      return answer.length > 0;
+    } else {
+      return answer.trim() !== '';
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateAnswer()) {
+      alert('Please provide an answer before submitting.');
+      return;
+    }
     // Handle submission logic here
     // alert('Form submitted with answers: ' + JSON.stringify(answers));
   };
@@ -68,20 +97,29 @@ const Form = () => {
       <form onSubmit={handleSubmit}>
         <div className="question-block">
           <p className="question">{questions[currentQuestion].question}</p>
-          <div className="options">
-            {questions[currentQuestion].options.map((option, index) => (
-              <label key={index} className="option">
-                <input
-                  type="checkbox"
-                  name={`question${currentQuestion}`}
-                  value={option}
-                  checked={answers[currentQuestion].includes(option)}
-                  onChange={handleAnswerChange}
-                />
-                {option}
-              </label>
-            ))}
-          </div>
+          {questions[currentQuestion].options ? (
+            <div className="options">
+              {questions[currentQuestion].options.map((option, index) => (
+                <label key={index} className="option">
+                  <input
+                    type={questions[currentQuestion].singleSelect ? 'radio' : 'checkbox'}
+                    name={`question${currentQuestion}`}
+                    value={option}
+                    checked={answers[currentQuestion].includes(option)}
+                    onChange={handleAnswerChange}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+          ) : (
+            <input
+              type="text"
+              value={answers[currentQuestion]}
+              onChange={handleAnswerChange}
+              className="text-input" // Add a class for custom styling
+            />
+          )}
         </div>
         <div className="navigation-buttons">
           <button type="button" onClick={prevQuestion} disabled={currentQuestion === 0} className="nav-button">
