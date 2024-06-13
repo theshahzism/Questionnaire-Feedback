@@ -1,0 +1,175 @@
+body, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color:  #25272d;
+  }
+  
+  /* Container styling */
+  .form-container {
+    width: 60%;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #565a61;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Form title styling */
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    background-color:  #565a61;
+  }
+  
+  /* Question block styling */
+  .question-block {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color:  #25272d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    animation: slideIn 0.5s ease;
+    text-align: center; /* Center align the text */
+  }
+  
+  /* Question text styling */
+  .question {
+    margin-bottom: 1rem;
+    font-weight: 200;
+    color: #fff;
+    font-size: 1.8rem; /* Increase font size */
+  }
+  
+  /* Options container styling */
+  .options {
+    display: flex;
+    flex-direction: column;
+    max-width: 570px;
+    margin-left: 3rem;
+  }
+  
+  /* Option label styling */
+  .option {
+    margin-bottom: 0.75rem; /* Increase margin */
+    padding: 0.5rem 1rem; /* Add padding */
+    font-size: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    border: 1px solid #565a61 ;
+    border-radius: 5px; /* Add border-radius */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer; /* Add cursor pointer */
+  }
+  
+  /* Input and label alignment */
+  .option input {
+    margin-right: 0.5rem;
+    transform: scale(1);;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Input hover effect */
+  .option:hover input {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px white;
+  }
+  
+  /* Option hover effect */
+  .option:hover {
+    background-color: #dc2618;
+    border: none;
+  }
+  
+  /* Input checked effect */
+  .option input:checked {
+    background-color: #dc2618;
+    border-color: #dc2618;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+  }
+  
+  /* Input active state */
+  .option input:active {
+    transform: scale(1.1);
+    background-color: #dc2618;
+    border-color: #dc2618;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+  }
+  
+  /* Navigation buttons container */
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  /* Navigation button styling */
+  .nav-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #dc2618;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .nav-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .nav-button:not(:disabled):hover {
+    background-color: red;
+    opacity: 10.5;
+    transform: translateY(-2px);
+  }
+  
+  /* Submit button styling */
+  .submit-button {
+    display: block;
+    width: 40%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #dc2618;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: red;
+    opacity: 10.5;
+    transform: translateY(-5px);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
