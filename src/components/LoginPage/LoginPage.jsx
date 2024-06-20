@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 const LoginPage = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Static user data for authentication
   const users = [
@@ -11,7 +12,6 @@ const LoginPage = () => {
     { username: 'user2', password: 'password2', role: 'user' },
   ];
 
-  // Function to handle login
   const handleLogin = () => {
     const usernameInput = document.getElementById('username').value;
     const passwordInput = document.getElementById('password').value;
@@ -20,11 +20,10 @@ const LoginPage = () => {
     const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
 
     if (user) {
-      // Store user data in localStorage or session storage if needed
       localStorage.setItem('user', JSON.stringify(user));
-      navigate('/form'); // Navigate to the form page on successful login
+      navigate('/form');
     } else {
-      alert('Invalid username or password');
+      setErrorMessage('Invalid username or password');
     }
   };
 
@@ -55,6 +54,11 @@ const LoginPage = () => {
               required
             />
           </div>
+          {errorMessage && (
+            <div className="error-message" style={{ color: 'red', marginBottom: '1rem' }}>
+              {errorMessage}
+            </div>
+          )}
           <button type="button" className="submit-button" onClick={handleLogin}>
             Login
           </button>

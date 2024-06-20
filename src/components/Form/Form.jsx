@@ -3,7 +3,9 @@ import './Form.css';
 
 const Form = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState(Array(7).fill('')); // Array to store answers
+  const [answers, setAnswers] = useState(Array(7).fill('')); 
+  const [errorMessage, setErrorMessage] = useState(''); // State to manage error message
+
   const questions = [
     {
       question: "What is your favorite programming language?",
@@ -40,8 +42,10 @@ const Form = () => {
   const nextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
       if (!validateAnswer()) {
-        alert('Please provide an answer before proceeding.');
-        return;
+        setErrorMessage('Please select at least one option or add text before proceeding.');
+        return; // Do not proceed if answer is not valid
+      } else {
+        setErrorMessage(''); // Clear error message if answer is valid
       }
       setCurrentQuestion(currentQuestion + 1);
     }
@@ -84,10 +88,11 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateAnswer()) {
-      alert('Please provide an answer before submitting.');
-      return;
+      setErrorMessage('Please select at least one option or enter text before submitting.');
+      return; // Do not submit if answer is not valid
     }
     // Handle submission logic here
+    setErrorMessage(''); // Clear error message on successful submission
     // alert('Form submitted with answers: ' + JSON.stringify(answers));
   };
 
@@ -117,9 +122,10 @@ const Form = () => {
               type="text"
               value={answers[currentQuestion]}
               onChange={handleAnswerChange}
-              className="text-input" // Add a class for custom styling
+              className="text-input"
             />
           )}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
         <div className="navigation-buttons">
           <button type="button" onClick={prevQuestion} disabled={currentQuestion === 0} className="nav-button">
